@@ -6,7 +6,7 @@ function App() {
 
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
-  
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function(position) {
       setLat(position.coords.latitude);
@@ -24,7 +24,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Weather App test
+          Weather App
         </p>
         <a
           className="App-link"
