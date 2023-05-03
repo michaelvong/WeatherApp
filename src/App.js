@@ -1,40 +1,66 @@
 import logo from './logo.svg';
 import './App.css';
 import React, {useEffect, useState} from "react";
+import Weather from './components/currentWeather';
+import axios from 'axios'
 
 function App() {
 
-  const [lat, setLat] = useState([]);
-  const [long, setLong] = useState([]);
+  const [currentLat, setCurrLat] = useState([]);
+  const [currentLong, setCurrLong] = useState([]);
+  const [data, setData] = useState([]);
+  const [location, setLocation] = useState('')
 
+  //gets current long/lat and api calls to get weather at location
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function(position) {
-      setLat(position.coords.latitude);
-      setLong(position.coords.longitude);
+      setCurrLat(position.coords.latitude);
+      setCurrLong(position.coords.longitude);
     });
     
-    console.log("Latitude is:", lat)
-    console.log("Longitude is:", long)
-  }, [lat, long]);
+    console.log("Latitude is:", currentLat)
+    console.log("Longitude is:", currentLong)
+
+  }, [currentLat, currentLong]);
+
+
+  //uses axios to call api
+  const getWeather = () => {
+
+    //`${process.env.REACT_APP_API_URL}lat=${currentLat}&lon=${currentLong}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`
+    //`${process.env.REACT_APP_API_URL}q=${location}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`
+    axios.get(`${process.env.REACT_APP_API_URL}q=${location}&units=imperial&APPID=${process.env.REACT_APP_API_KEY}`).then((response) =>
+    {
+      setData(response.data)
+      console.log(location)
+      console.log(response.data)
+    })
+  }
 
 
   return (
     <div className="App">
-      <div>SearchBar</div>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Weather App
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='Search'>
+        <input
+        class = "input"
+        placeholder='Enter Location'
+        value={location}
+        onChange={event => setLocation(event.target.value)}
+        type="text"/>
+        <button className='Btn' onClick={getWeather}>Search</button>
+      </div>
+      
+      <div className='info'>
+        <div className='location'>
+          <p>{data.name}</p>
+        </div>
+        <div className='data'>
+          <p>{data.weather[0].main}</p>
+          <p>Current Temperature: {data.main.temp}</p>
+          <p>Feels like: {data.main.feels_like}</p>
+          <p>Wind Speeds: {data.wind.speed}</p>
+        </div>
+      </div>
     </div>
   );
 }
