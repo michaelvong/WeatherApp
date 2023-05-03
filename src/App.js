@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React, {useEffect, useState} from "react";
 import Weather from './components/currentWeather';
@@ -54,11 +53,17 @@ function App() {
         <div className='location'>
           <p>{data.name}</p>
         </div>
-        <div className='data'>
-          <p>{data.weather[0].main}</p>
-          <p>Current Temperature: {data.main.temp}</p>
-          <p>Feels like: {data.main.feels_like}</p>
-          <p>Wind Speeds: {data.wind.speed}</p>
+        <div className='temperature'>
+          {data.main ? <p> {data.main.temp}°F</p>: null}
+        </div>
+        <div className='feels'>
+          {data.main ? <p>Feels like: {data.main.feels_like}°F</p>: null}
+        </div>
+        <div className='humid'>
+          {data.main ? <p>Humidity: {data.main.humidity}%</p>: null}
+        </div>
+        <div className='wind'>
+          {data.main ? <p>Winds: {data.wind.speed}mph</p>: null}
         </div>
       </div>
     </div>
