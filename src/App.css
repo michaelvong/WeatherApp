@@ -1,5 +1,5 @@
+
 .App {
-  text-align: center;
   
 }
 
@@ -7,23 +7,69 @@
 
 }
 
+.App:before {
+  content: '';
+  background: url('./background.jpg') no-repeat center center/cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+
 .Search{
   text-align: center;
-  padding: 1rem;
-  
+  position:relative;
+  padding: .9rem;
+	border-radius: 50px;
+  background: #1914589d;
+  height: 70px;
+  width: 350px;
+  margin:auto;
 }
 
 .input{
-  padding: .7rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 25px;
+  padding: 1.2rem 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 50px;
   border: 1px solid rgba(0, 0, 0, 0.8);
-  background: rgba(255,255,255, 0.1);
-  color: #000000;
+  background: rgba(1, 0, 2, 0.473);
+  color: #ffffff;
 }
 
 .Btn{
-  
+	align-items: center;
+  width: 50px;
+	height: 50px;
+	border-radius: 50%;
+  background: url('./glass.jpg') center/cover;
+  background-color: transparent;
+}
+
+.info{
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  width: 100%;
+  margin: 1rem auto;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.452);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color:#ffffff;
 }
 
 
+
+.location{
+  font-size: 2rem;
+  color: #e0e0e0;
+}
+
+h1{
+  font-size: 2rem;
+  color: #e0e0e0;
+}
