@@ -39,7 +39,7 @@ function App() {
     {
       setForecastData(response1.data)
       //console.log(location)
-      console.log(response1.data)
+      //console.log(response1.data)
     })
 
   }
@@ -84,7 +84,7 @@ function App() {
       {forecastData.list ? <div className='forecast'> 
         <h1>Forecast</h1>
         <div className='futureData'>
-          <Forecast data = {forecastData}/>
+          <Forecast forecastData = {forecastData}/>
         </div>
       </div> : null}
     </div>
